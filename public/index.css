@@ -1,0 +1,117 @@
+.main_div{
+  background-image: url('/images/cake.jpg');
+  background-color: black;
+}
+img{
+  width: 100%;
+  height: auto;
+}
+.describe_div div {
+   text-align: center;
+   font-size: 200%;
+   font-style: italic;
+   margin-top: 5%;
+   margin-bottom: 5%;
+}
+.describe_div div:nth-child(n):nth-child(-n+3)
+{
+   border-right: 1px solid black;
+ }
+.category_title{
+  font-size: 200%;
+  text-align: center;
+  margin-bottom: 2%;
+}
+.category_div h4{
+  text-align: center;
+  font-weight: bold;
+}
+.category_div p{
+  text-align: center;
+}
+.footer_div{
+  margin-top: 3%;
+  background-color: #000080;
+  height: 60%;
+  padding-top: 5%;
+}
+.footer_div p,h4{
+  color: white;
+}
+/* Scrolling bar */
+.placeholder{
+  padding: 3em;
+}
+.progressContainer{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: gray;
+}
+.progress{
+  height: 4px;
+  background: red;
+  width: 0;
+  transition: width 0.5s;
+}
+/***************/
+.navbar-custom{
+  background-color: #F8F8F8;
+  border-color: #F8F8F8;
+  color:#ffffff;
+  border-radius:0;
+}
+.navbar-custom .navbar-brand {
+    color:black;
+}
+.navbar-custom .navbar-toggle {
+    background-color:black;
+}
+.navbar-custom .icon-bar {
+    background-color:black;
+}
+.navbar-custom .navbar-nav a{
+  color:black;
+}
+.footer {
+    left: 0;
+   bottom: 0;
+   height: auto;
+   width: 100%;
+   background-color: darkblue;
+   color: white;
+   text-align: center;
+}
+/* login facebook and google buttons*/
+.fa {
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+}
+.fa:hover {
+    opacity: 0.9;
+    text-decoration: none;
+}
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+.fa-facebook:hover{
+  color:white;
+}
+.fa-google {
+  background: #dd4b39;
+  color: white;
+}
+.fa-google:hover {
+  color:white;
+}
+
+.login-buttons{
+  margin-left: 25%;
+  margin-top: 20%;
+}
