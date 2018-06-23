@@ -1,5 +1,11 @@
+.about{
+  margin-top: 10%;
+  width: 50%;
+  margin-left: 20%;
+  font-size: 20px;
+}
 .main_div{
-  background-image: url('/images/cake.jpg');
+  /*background-image: url('/images/cake1.jpg');*/
   background-color: black;
 }
 img{

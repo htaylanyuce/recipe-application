@@ -1,17 +1,16 @@
 const passport = require('passport');
 const FacebookStrategy = require('passport-facebook').Strategy;
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const mongoose = require('mongoose');
-const Users = require('../models/users');
+const Author = require('../models/author');
 const keys = require('../config/keys');
 
-
-passport.serializeUser(function(user, done) {
+passport.serializeUser((user, done) =>{
    done(null, user.id);
  });
 
- passport.deserializeUser(function(id, done) {
-   User.findById(id,  (err, user) => {
+ passport.deserializeUser((id, done)=> {
+   Author.findById(id,  (err, user) => {
      done(err, user);
    });
  });
@@ -19,16 +18,19 @@ passport.serializeUser(function(user, done) {
 passport.use(new FacebookStrategy({
     clientID: keys.facebook.facebookId,
     clientSecret: keys.facebook.facebookSecret,
-    callbackURL: "/auth/facebook/callback"
-  },
+    callbackURL: "/auth/facebook/callback",
+    profileFields: ['id', 'displayName', 'picture', 'email']
+   },
   (accessToken, refreshToken, profile, done) => {
-    Users.findOne({userId:profile.id})
+    console.log(profile.id)
+    console.log(profile.displayName)
+    Author.findOne({authorId:profile.id,authorName:profile.displayName})
     .then((existingUser)=> {
       if(existingUser){
         done(null, existingUser);
       }
       else{
-        new Users({userId:profile.id})
+        new Author({authorId:profile.id,authorName:profile.displayName})
         .save()
         .then(user => done(null,user));
 
@@ -43,17 +45,21 @@ passport.use(new GoogleStrategy({
       callbackURL: "/auth/google/callback"
     },
     (accessToken, refreshToken, profile, done) => {
-      Users.findOne({userId:profile.id})
+      //console.log(profile);
+      Author.findOne({authorId:profile.id,authorName:profile.name.givenName})
       .then((existingUser)=> {
         if(existingUser){
           done(null, existingUser);
         }
         else{
-          new Users({userId:profile.id})
+          new Author({authorId:profile.id,authorName:profile.name.givenName})
           .save()
           .then(user => done(null,user));
 
         }
-      });
+      })
+      .catch(function(err) {
+       done(err);
+     });
 
 }));

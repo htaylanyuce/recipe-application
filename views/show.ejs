@@ -1,0 +1,27 @@
+<% include partials/header.ejs %>
+
+  <div class="container" style="margin-top:5%;">
+
+
+        <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+            <% recipes.forEach(function(recipe){ %>
+                <div class="col-md-3 col-sm-6">
+                    <div class="thumbnail">
+                       <img src="<%= recipe.image %>">
+                       <div class="caption">
+                           <h4><%= recipe.title %> by <em><%= recipe.author.authorName%></em></h4>
+                           <h5><%= recipe.description.substring(0,100) %></h5>
+                       </div>
+                       <p>
+                           <a href="/index/<%= recipe._id %>" class="btn btn-primary">More Info</a>
+                       </p>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+
+
+
+
+<% include partials/footer.ejs %>

@@ -1,15 +1,16 @@
 const passport = require('passport');
-const FacebookStrategy = require('passport-facebook').Strategy;
+const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
+let options = {
+  successRedirect:'/show',
+  failureRedirect:'/login'
+}
 
 module.exports = (app) => {
   app.get('/auth/google',
-    passport.authenticate('google', { scope: ['profile'] }));
+   passport.authenticate('google', { scope : ['profile'] }));
 
-  app.get('/auth/google/callback',
-    passport.authenticate('google', { failureRedirect: '/login' }),
-    function(req, res) {
-      // Successful authentication, redirect home.
-      res.redirect('/');
-    });
+
+    app.get('/auth/google/callback', passport.authenticate('google', options))
+
 }
